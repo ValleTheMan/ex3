@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resultat från Canvas till Ladok</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="sidhuvud">
+    <h1>Resultat från Canvas till Ladok</h1>
+    <p>Hämta omdömen för en uppgift, välj modul och registrera betygen i Ladok.</p>
+  </header>
+
+  <main>
+    <form id="sokformular" class="panel sokrad" autocomplete="off">
+      <div class="falt">
+        <label for="kurskod">Kurskod</label>
+        <input id="kurskod" name="kurskod" value="D0031N" maxlength="10" required>
+      </div>
+      <div class="falt vaxer">
+        <label for="uppgift">Uppgift</label>
+        <input id="uppgift" name="uppgift" list="uppgiftslista" placeholder="t.ex. Inlämningsuppgift 1" required>
+        <datalist id="uppgiftslista"></datalist>
+      </div>
+      <button type="submit" id="hamta" class="primar">Hämta studenter</button>
+    </form>
+
+    <div id="meddelande" class="meddelande" role="status" hidden></div>
+
+    <section id="resultatyta" class="panel" hidden aria-labelledby="resultatrubrik">
+      <div class="rubrikrad">
+        <h2 id="resultatrubrik"></h2>
+      </div>
+
+      <div class="verktyg">
+        <div class="falt">
+          <label for="modul">Modul</label>
+          <select id="modul"></select>
+        </div>
+        <div class="falt">
+          <label for="datum">Examinationsdatum</label>
+          <input id="datum" type="date">
+        </div>
+        <label class="kryssruta" for="visa-pnr">
+          <input id="visa-pnr" type="checkbox"> Visa personnummer
+        </label>
+        <div class="verktyg-slut">
+          <span id="antal" class="dov" aria-live="polite"></span>
+          <button type="button" id="registrera" class="primar">Registrera i Ladok</button>
+        </div>
+      </div>
+
+      <div class="tabellyta">
+        <table>
+          <thead>
+            <tr>
+              <th class="smal"><input id="markera-alla" type="checkbox" aria-label="Välj alla"></th>
+              <th>Student</th>
+              <th>Personnummer</th>
+              <th>Omdöme i Canvas</th>
+              <th>Datum</th>
+              <th>Betyg</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="studentrader"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
